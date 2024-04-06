@@ -12,6 +12,7 @@ namespace KnightsChallenge.Core.Contexts
 
         public string DatabaseName { get; set; } = null!;
 
-        public string CollectionName { get; set; } = null!;
+        public string KnightsCollection { get; set; } = null!;
+        public string HallOfHeroesCollection { get; set; } = null!;
     }
 }

@@ -14,6 +14,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.Configure<ConnectionConfig>(
     builder.Configuration.GetSection("MongoDatabaseConfig"));
 builder.Services.AddSingleton<KnightService>();
+builder.Services.AddSingleton<HallOfHeroesService>();
 
 var app = builder.Build();
 
