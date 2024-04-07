@@ -3,8 +3,6 @@ using KnightsChallenge.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -16,6 +14,19 @@ builder.Services.Configure<ConnectionConfig>(
 builder.Services.AddSingleton<KnightService>();
 builder.Services.AddSingleton<HallOfHeroesService>();
 
+var OrigemFront = "RegrasCORS";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: OrigemFront,
+                      policy =>
+                      {
+                          policy.WithOrigins(builder.Configuration.GetSection("AllowedHosts").Value ?? "")
+                          .AllowAnyHeader()
+                          .AllowAnyMethod();
+                      });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -26,6 +37,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(OrigemFront);
 
 app.UseAuthorization();
 
