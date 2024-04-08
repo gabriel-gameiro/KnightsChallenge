@@ -69,7 +69,7 @@ namespace KnightsChallenge.Core.Entitys
                 Id = Id,
                 Nome = Name,
                 Idade = (DateTime.Now.Year - Birthday.Year),
-                Armas = Weapons.Count(),
+                Armas = (Weapons != null ? Weapons.Count() : 0),
                 Ataque = Attack,
                 Atributo = KeyAttribute,
                 Exp = Experience
