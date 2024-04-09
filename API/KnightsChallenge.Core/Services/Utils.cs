@@ -8,6 +8,7 @@ namespace KnightsChallenge.Core.Services
 {
     internal static class Utils
     {
+        // Conforme obter o modificador poderia ser um codigo comumente utilizado, ele esta em uma classe de metodos uteis.
         public static int ModValue(int attributeValue) 
         {
             if (attributeValue < 9) return -2;

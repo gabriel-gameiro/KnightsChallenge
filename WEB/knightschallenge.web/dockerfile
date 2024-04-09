@@ -1,0 +1,22 @@
+FROM node:lts-alpine
+
+# Instala o servidor
+RUN npm install -g http-server
+
+WORKDIR /app
+
+# Traz os arquivos para instalacao de dependencias
+COPY package*.json ./
+
+# Instala as dependencias
+RUN npm install
+
+# Traz o restante dos arquivos da aplicacao
+COPY . .
+
+# Builda
+RUN npm run build
+
+# Configura o comando que starta o server ao iniciar o container
+EXPOSE 8080
+CMD [ "http-server", "dist" ]

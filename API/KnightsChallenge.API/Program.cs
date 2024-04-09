@@ -4,18 +4,23 @@ using KnightsChallenge.Core.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+// Documentacao swagger automatico
 builder.Services.AddSwaggerGen();
 
-// Configurando a conexão com o mongoDB
+// Obtendo e disponibilizando como dependencia a configuracao de conexao com o mongoDB
 builder.Services.Configure<ConnectionConfig>(
     builder.Configuration.GetSection("MongoDatabaseConfig"));
+
+// Inicializando as services para serem consumidas via injecao de dependencia
 builder.Services.AddSingleton<KnightService>();
 builder.Services.AddSingleton<HallOfHeroesService>();
 
-var OrigemFront = "RegrasCORS";
 
+// Configurando regras de CORS para permitir acesso do front-end
+// (Ao definir o IP fixo do Front, permitir acesso apenas dessa origem)
+var OrigemFront = "RegrasCORS";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: OrigemFront,
@@ -29,7 +34,6 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -43,6 +47,5 @@ app.UseCors(OrigemFront);
 app.UseAuthorization();
 
 app.MapControllers();
-
 
 app.Run();

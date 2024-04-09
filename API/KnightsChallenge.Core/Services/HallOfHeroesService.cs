@@ -12,6 +12,7 @@ namespace KnightsChallenge.Core.Services
 {
     public class HallOfHeroesService
     {
+        // Service para manipulacao da HallOfHeroes
         private readonly IMongoCollection<Knight> _knightsCollection;
         public HallOfHeroesService(
             IOptions<ConnectionConfig> databaseSettings)
@@ -26,6 +27,7 @@ namespace KnightsChallenge.Core.Services
                 databaseSettings.Value.HallOfHeroesCollection);
         }
 
+        // Apenas insercao e consulta
         public async Task<List<Knight>> GetAsync() =>
             await _knightsCollection.Find(_ => true).ToListAsync();
 

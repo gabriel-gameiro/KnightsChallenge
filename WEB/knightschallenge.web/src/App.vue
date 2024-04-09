@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Para melhor reutilizacao, o header eh um componente a parte e fixo do site -->
     <HeaderComponent/>
     <HomePage/>
   </div>

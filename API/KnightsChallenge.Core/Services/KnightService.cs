@@ -13,6 +13,7 @@ namespace KnightsChallenge.Core.Services
 {
     public class KnightService
     {
+        // Service para manipulacao da KnightsCollection
         private readonly IMongoCollection<Knight> _knightsCollection;
         public KnightService(
             IOptions<ConnectionConfig> databaseSettings)
@@ -27,6 +28,7 @@ namespace KnightsChallenge.Core.Services
                 databaseSettings.Value.KnightsCollection);
         }
 
+        // CRUD
         public async Task<List<Knight>> GetAsync() =>
             await _knightsCollection.Find(_ => true).ToListAsync();
 

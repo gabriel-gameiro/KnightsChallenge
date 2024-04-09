@@ -1,5 +1,7 @@
 import { http } from "./config";
 
+// Service para interacao com a API do projeto
+// Por padrao retorna a Promise da requisicao
 export default {
 
     listarKnights: () => {

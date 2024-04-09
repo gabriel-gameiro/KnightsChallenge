@@ -8,9 +8,11 @@ namespace KnightsChallenge.API.Controllers
     [Route("[controller]")]
     public class KnightController : Controller
     {
+        // Uma service para cada Collection
         private readonly KnightService _knightService;
         private readonly HallOfHeroesService _hallOfHeroesService;
 
+        // Inicia as services via injecao de dependencias
         public KnightController(KnightService booksService, HallOfHeroesService hallOfHeroesService)
         { 
             _knightService = booksService;
@@ -23,6 +25,8 @@ namespace KnightsChallenge.API.Controllers
         public async Task<ActionResult> ListarKnights(string? filter)
         {
             List<Knight> knights;
+
+            // A definicao de qual service sera usada fica a cargo da controller
             if (filter == "heroes")
                 knights = await _hallOfHeroesService.GetAsync();
             else
@@ -34,7 +38,7 @@ namespace KnightsChallenge.API.Controllers
             return new OkObjectResult(knightsDto);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "ObterKnight")]
         public async Task<ActionResult<Knight>> ObterKnight(string id)
         {
             try
@@ -65,7 +69,8 @@ namespace KnightsChallenge.API.Controllers
             {
                 _knightService.CreateAsync(knight).Wait();
 
-                return new CreatedAtRouteResult($"", null);
+                // Ao criar um recurso, retorna o endpoint de consulta daquele recurso
+                return CreatedAtRoute("ObterKnight", routeValues: new { id = knight.Id }, value: knight);
             }
             catch (Exception)
             {

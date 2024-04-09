@@ -5,8 +5,7 @@
 
       <ul class="ms-2 nav col-12">
         <li><a href="#" class="nav-link px-2 text-white active ">Home</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Sobre</a></li>
-        <li><a href="#" class="nav-link px-2 text-white">Github</a></li>
+        <li><a href="https://github.com/gabriel-gameiro/KnightsChallenge" class="nav-link px-2 text-white">Github</a></li>
       </ul>
     </div>
   </header>

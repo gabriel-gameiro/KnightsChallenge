@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// Service que retorna a conexao com o backend ja iniciada. Centralizando assim a configuracao.
 export const http = axios.create({
     baseURL: 'https://localhost:44370/',
     withCredentials: false,

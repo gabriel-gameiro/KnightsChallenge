@@ -10,6 +10,7 @@
             </div>
         </div>
 
+        <!-- Tabela dos knights da base -->
         <div class="w-100 mt-4 table-responsive ">
             <table class="table table-hover table-responsive ">
                 <thead>
@@ -40,6 +41,7 @@
             </table>
         </div>
 
+        <!-- Modal para edicao e consulta dos knights -->
         <b-modal id="modal-detalhes" ref="modal-detalhes" title="Detalhes do personagem">
             <div class="d-block text-center">
                 <h4>Informações</h4>
@@ -159,6 +161,7 @@ export default {
     // Alias do componente para tag html
     directives: { 'b-modal': VBModal },
 
+    // Metodos que serao consumidos pela tela
     methods: {
         detalhar: function (knight) {
             console.log(knight);
@@ -255,7 +258,7 @@ export default {
         },
     },
 
-    // Inicia variaveis que serão consumidas pela tela
+    // Inicia variaveis que serao consumidas pela tela
     data() {
         return {
             knights: [],
@@ -265,7 +268,7 @@ export default {
     },
 
 
-    // Ao carregar a tela, executa ações que podem preencher as variaveis iniciadas acima
+    // Ao carregar a tela, executa acoes que podem preencher as variaveis iniciadas acima
     mounted() {
         this.listarKnights();
     }
